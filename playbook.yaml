@@ -1,0 +1,36 @@
+---
+- name: Webserver setup
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Install httpd
+      ansible.builtin.dnf:
+        name: httpd
+        state: present
+
+    - name: Enable and start httpd service
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
+
+- name: DBServer setup
+  hosts: dbservers
+  become: yes
+  tasks:
+    ---
+- name: Install MariaDB on Amazon Linux 2023
+  hosts: dbserver
+  become: yes
+  tasks:
+    - name: Install MariaDB 10.5 server
+      ansible.builtin.dnf:
+        name: mariadb105-server
+        state: present
+
+    - name: Enable and start MariaDB service
+      ansible.builtin.systemd:
+        name: mariadb
+        enabled: yes
+        state: started
+
