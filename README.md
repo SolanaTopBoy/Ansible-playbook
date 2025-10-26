@@ -11,76 +11,43 @@ It includes:
 ---
 
 ## 🧭 Project Structure
+
 ansible-infra-automation/
+├── ansible.cfg # Global Ansible configuration
 ├── inventory/
-│   ├── ansible.yml             # Inventory file (hosts, groups, data centers)
-│   └── group_vars/
-│       ├── webservers.yml        # Variables specific to web servers
-│       └── dbservers.yml         # Variables specific to database servers
+│ ├── inventory.yml # Inventory file (hosts, groups, data centers)
+│ └── group_vars/
+│ ├── webservers.yml # Variables specific to web servers
+│ └── dbservers.yml # Variables specific to database servers
 │
 ├── roles/
-│   ├── web/                      # Role for web server setup
-│   │   ├── tasks/
-│   │   │   └── main.yml          # Web setup tasks (httpd installation, etc.)
-│   │   ├── templates/            # Jinja2 templates for httpd config or index.html
-│   │   ├── files/                # Static files (optional)
-│   │   └── vars/
-│   │       └── main.yml          # Variables for web role
-│   │
-│   ├── db/                       # Role for database setup
-│   │   ├── tasks/
-│   │   │   └── main.yml          # DB setup tasks (MariaDB installation)
-│   │   ├── templates/
-│   │   ├── files/
-│   │   └── vars/
-│   │       └── main.yml
+│ ├── web/ # Role for web server setup
+│ │ ├── tasks/
+│ │ │ └── main.yml # Web setup tasks (httpd installation, etc.)
+│ │ ├── templates/ # Jinja2 templates for httpd config or index.html
+│ │ ├── files/ # Static files (optional)
+│ │ └── vars/
+│ │ └── main.yml # Variables for web role
+│ │
+│ ├── db/ # Role for database setup
+│ │ ├── tasks/
+│ │ │ └── main.yml # DB setup tasks (MariaDB installation)
+│ │ ├── templates/
+│ │ │ └── my.cnf.j2
+│ │ ├── files/
+│ │ └── vars/
+│ │ └── main.yml
 │
 ├── playbooks/
-│   ├── site.yml                  # Main playbook combining all roles
-│   ├── web.yml                   # Playbook for only web servers
-│   └── db.yml                    # Playbook for only database servers
+│ ├── site.yml # Main playbook combining all roles
+│ ├── web.yml # Playbook for only web servers
+│ └── db.yml # Playbook for only database servers
 │
 ├── files/
-│   └── clientkey.pem             # SSH key 
-│
-├── ansible.cfg                   # Global Ansible configuration
-├── ansible.cfg
-├── inventory/
-│   └── inventory.yml
-│
-├── playbooks/
-│   └── site.yml
-│
-├── roles/
-│   ├── web/
-│   │   ├── tasks/
-│   │   │   └── main.yml
-│   │   ├── handlers/
-│   │   │   └── main.yml
-│   │   ├── templates/
-│   │   │   └── index.html.j2
-│   │   ├── vars/
-│   │   │   └── main.yml
-│   │   └── defaults/
-│   │       └── main.yml
-│   │
-│   ├── db/
-│   │   ├── tasks/
-│   │   │   └── main.yml
-│   │   ├── handlers/
-│   │   │   └── main.yml
-│   │   ├── templates/
-│   │   │   └── my.cnf.j2
-│   │   ├── vars/
-│   │   │   └── main.yml
-│   │   └── defaults/
-│   │       └── main.yml
-│
-├── files/
-│   └── clientkey.pem        # SSH key file 
+│ └── clientkey.pem # SSH key (DO NOT COMMIT)
 │
 ├── logs/
-│   └── ansible.log          # Optional log output file
+│ └── ansible.log # Optional log output file
 │
 ├── LICENSE
 └── README.md
